@@ -1,10 +1,9 @@
 import React from 'react';
+import type { TaskType } from './App';
 
-type TodolistType = {
-  title: string;
-};
+export type TaskPropsType = { title: string; tasks: TaskType[] };
 
-export const Todolist: React.FC<TodolistType> = ({ title }) => {
+export const Todolist: React.FC<TaskPropsType> = ({ title, tasks }) => {
   return (
     <div className="todolist">
       <h3>{title}</h3>
@@ -13,15 +12,11 @@ export const Todolist: React.FC<TodolistType> = ({ title }) => {
         <button>+</button>
       </div>
       <ul>
-        <li>
-          <input type="checkbox" checked={true} /> <span>HTML&CSS</span>
-        </li>
-        <li>
-          <input type="checkbox" checked={true} /> <span>JS</span>
-        </li>
-        <li>
-          <input type="checkbox" checked={false} /> <span>React</span>
-        </li>
+        {tasks.map((t) => (
+          <li>
+            <input type="checkbox" id={t.id} checked={t.isDone} /> <span>{t.title}</span>
+          </li>
+        ))}
       </ul>
       <div>
         <button>All</button>
