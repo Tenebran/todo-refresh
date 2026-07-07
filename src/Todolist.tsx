@@ -12,11 +12,15 @@ export const Todolist: React.FC<TaskPropsType> = ({ title, tasks }) => {
         <input />
         <button>+</button>
       </div>
-      <ul>
-        {tasks.map((t) => (
-          <Task id={t.id} title={t.title} isDone={t.isDone} />
-        ))}
-      </ul>
+      {tasks.length > 0 ? (
+        <ul>
+          {tasks.map((t) => (
+            <Task id={t.id} title={t.title} isDone={t.isDone} />
+          ))}
+        </ul>
+      ) : (
+        <span>Your tasks list is empty</span>
+      )}
       <div>
         <button>All</button>
         <button>Active</button>
