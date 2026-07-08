@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css';
 import { Todolist } from './Todolist';
 
@@ -6,7 +7,7 @@ export type TaskType = { id: string; isDone: boolean; title: string };
 function App() {
   const todolistTitle1: string = 'What to learn';
 
-  const tasks: TaskType[] = [
+  const [tasks, setTasks] = useState<TaskType[]>([
     {
       id: '1',
       isDone: true,
@@ -22,7 +23,7 @@ function App() {
       isDone: false,
       title: 'React',
     },
-  ];
+  ]);
 
   return (
     <div className="app">

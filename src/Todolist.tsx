@@ -12,7 +12,7 @@ export const Todolist: React.FC<TaskPropsType> = ({ title, tasks }) => {
         <input />
         <button>+</button>
       </div>
-      {tasks.length > 0 ? (
+      {tasks.length ? (
         <ul>
           {tasks.map((t) => (
             <Task id={t.id} title={t.title} isDone={t.isDone} />
