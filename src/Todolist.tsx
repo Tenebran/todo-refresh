@@ -1,16 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import type { TaskType } from './App';
 import { Task } from './Task';
 
-export type TaskPropsType = { title: string; tasks: TaskType[]; removeTask: (id: string) => void };
+export type TaskPropsType = {
+  title: string;
+  tasks: TaskType[];
+  removeTask: (id: string) => void;
+  addTasks: (title: string) => void;
+};
 
-export const Todolist: React.FC<TaskPropsType> = ({ title, tasks, removeTask }) => {
+export const Todolist: React.FC<TaskPropsType> = ({ title, tasks, removeTask, addTasks }) => {
+  const [newTasksTitle, setNewTasksTitle] = useState('');
+
+  const addTasHandler = () => {
+    addTasks(newTasksTitle);
+    setNewTasksTitle('');
+  };
+
+  const onKeyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      addTasHandler();
+    }
+  };
+
+  console.log(newTasksTitle);
+
   return (
     <div className="todolist">
       <h3>{title}</h3>
       <div>
-        <input />
-        <button>+</button>
+        <input
+          value={newTasksTitle}
+          onChange={(e) => setNewTasksTitle(e.currentTarget.value)}
+          onKeyDown={onKeyDownHandler}
+        />
+        <button onClick={addTasHandler}>+</button>
       </div>
       {tasks.length ? (
         <ul>

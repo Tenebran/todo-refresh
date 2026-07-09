@@ -5,6 +5,7 @@ export type TasksPropsType = {
   isDone: boolean;
   title: string;
   removeTask: (id: string) => void;
+  addTasks: (title: string) => void;
 };
 
 export const Task: React.FC<TasksPropsType> = ({ id, isDone, title, removeTask }) => {

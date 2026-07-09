@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import { Todolist } from './Todolist';
+import { v1 } from 'uuid';
 
 export type TaskType = { id: string; isDone: boolean; title: string };
 
@@ -29,9 +30,13 @@ function App() {
     setTasks(tasks.filter((t) => t.id !== id));
   };
 
+  const addTasks = (title: string) => {
+    setTasks([...tasks, { id: v1(), isDone: false, title }]);
+  };
+
   return (
     <div className="app">
-      <Todolist title={todolistTitle1} tasks={tasks} removeTask={removeTask} />
+      <Todolist title={todolistTitle1} tasks={tasks} removeTask={removeTask} addTasks={addTasks} />
     </div>
   );
 }
