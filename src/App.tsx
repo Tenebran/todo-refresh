@@ -25,9 +25,13 @@ function App() {
     },
   ]);
 
+  const removeTask = (id: string) => {
+    setTasks(tasks.filter((t) => t.id !== id));
+  };
+
   return (
     <div className="app">
-      <Todolist title={todolistTitle1} tasks={tasks} />
+      <Todolist title={todolistTitle1} tasks={tasks} removeTask={removeTask} />
     </div>
   );
 }

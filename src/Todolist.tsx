@@ -2,9 +2,9 @@ import React from 'react';
 import type { TaskType } from './App';
 import { Task } from './Task';
 
-export type TaskPropsType = { title: string; tasks: TaskType[] };
+export type TaskPropsType = { title: string; tasks: TaskType[]; removeTask: (id: string) => void };
 
-export const Todolist: React.FC<TaskPropsType> = ({ title, tasks }) => {
+export const Todolist: React.FC<TaskPropsType> = ({ title, tasks, removeTask }) => {
   return (
     <div className="todolist">
       <h3>{title}</h3>
@@ -15,7 +15,7 @@ export const Todolist: React.FC<TaskPropsType> = ({ title, tasks }) => {
       {tasks.length ? (
         <ul>
           {tasks.map((t) => (
-            <Task id={t.id} title={t.title} isDone={t.isDone} />
+            <Task id={t.id} title={t.title} isDone={t.isDone} removeTask={removeTask} />
           ))}
         </ul>
       ) : (
