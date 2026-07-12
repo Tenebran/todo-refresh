@@ -4,9 +4,10 @@ import { Todolist } from './Todolist';
 import { v1 } from 'uuid';
 
 export type TaskType = { id: string; isDone: boolean; title: string };
+export type FilterValueType = 'all' | 'active' | 'completed';
 
 function App() {
-  const todolistTitle1: string = 'What to learn';
+  const [filterValue, setFilterValue] = useState<FilterValueType>('all');
 
   const [tasks, setTasks] = useState<TaskType[]>([
     {
@@ -26,6 +27,8 @@ function App() {
     },
   ]);
 
+  const todolistTitle1: string = 'What to learn';
+
   const removeTask = (id: string) => {
     setTasks(tasks.filter((t) => t.id !== id));
   };
@@ -34,9 +37,31 @@ function App() {
     setTasks([...tasks, { id: v1(), isDone: false, title }]);
   };
 
+  const getFilteredTasks = (allTasks: TaskType[], filter: FilterValueType): TaskType[] => {
+    if (filter === 'active') {
+      return allTasks.filter((t) => !t.isDone);
+    } else if (filter === 'completed') {
+      return allTasks.filter((t) => t.isDone);
+    } else {
+      return allTasks;
+    }
+  };
+
+  const filteredTasksForRender: TaskType[] = getFilteredTasks(tasks, filterValue);
+
+  const onClickFilterValueHandler = (value: FilterValueType) => {
+    setFilterValue(value);
+  };
+
   return (
     <div className="app">
-      <Todolist title={todolistTitle1} tasks={tasks} removeTask={removeTask} addTasks={addTasks} />
+      <Todolist
+        title={todolistTitle1}
+        tasks={filteredTasksForRender}
+        removeTask={removeTask}
+        addTasks={addTasks}
+        onClickFilterValueHandler={onClickFilterValueHandler}
+      />
     </div>
   );
 }
