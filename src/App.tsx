@@ -38,12 +38,13 @@ function App() {
   };
 
   const getFilteredTasks = (allTasks: TaskType[], filter: FilterValueType): TaskType[] => {
-    if (filter === 'active') {
-      return allTasks.filter((t) => !t.isDone);
-    } else if (filter === 'completed') {
-      return allTasks.filter((t) => t.isDone);
-    } else {
-      return allTasks;
+    switch (filter) {
+      case 'active':
+        return allTasks.filter((t) => !t.isDone);
+      case 'completed':
+        return allTasks.filter((t) => t.isDone);
+      default:
+        return allTasks;
     }
   };
 
