@@ -11,17 +11,17 @@ function App() {
 
   const [tasks, setTasks] = useState<TaskType[]>([
     {
-      id: '1',
+      id: v1(),
       isDone: true,
       title: 'HTML&CSS',
     },
     {
-      id: '2',
+      id: v1(),
       isDone: true,
       title: 'JS',
     },
     {
-      id: '3',
+      id: v1(),
       isDone: false,
       title: 'React',
     },

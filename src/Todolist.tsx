@@ -18,10 +18,20 @@ export const Todolist: React.FC<TaskPropsType> = ({
   onClickFilterValueHandler,
 }) => {
   const [newTasksTitle, setNewTasksTitle] = useState('');
+  const [errorTaskTitle, setErrorTaskTitle] = useState<undefined | string>(undefined);
 
   const addTasHandler = () => {
-    addTasks(newTasksTitle);
-    setNewTasksTitle('');
+    if (newTasksTitle.trim().length > 0 && newTasksTitle.trim().length < 15) {
+      addTasks(newTasksTitle);
+      setNewTasksTitle('');
+      setErrorTaskTitle(undefined);
+      console.log('here hehe 1');
+    } else if (newTasksTitle.trim().length > 15) {
+      setErrorTaskTitle('your task must max 15 symbol');
+      console.log('here hehe 2');
+    } else {
+      setErrorTaskTitle('your task is empty');
+    }
   };
 
   const onKeyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -30,7 +40,10 @@ export const Todolist: React.FC<TaskPropsType> = ({
     }
   };
 
-  console.log(newTasksTitle);
+  const onChangeTaskTitle = (title: string) => {
+    setNewTasksTitle(title);
+    setErrorTaskTitle(undefined);
+  };
 
   return (
     <div className="todolist">
@@ -38,10 +51,13 @@ export const Todolist: React.FC<TaskPropsType> = ({
       <div>
         <input
           value={newTasksTitle}
-          onChange={(e) => setNewTasksTitle(e.currentTarget.value)}
+          onChange={(e) => onChangeTaskTitle(e.currentTarget.value)}
           onKeyDown={onKeyDownHandler}
         />
-        <button onClick={addTasHandler}>+</button>
+        <button onClick={addTasHandler} disabled={!!errorTaskTitle}>
+          +
+        </button>
+        <div>{errorTaskTitle}</div>
       </div>
       {tasks.length ? (
         <ul>
