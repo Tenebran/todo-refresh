@@ -25,10 +25,8 @@ export const Todolist: React.FC<TaskPropsType> = ({
       addTasks(newTasksTitle);
       setNewTasksTitle('');
       setErrorTaskTitle(undefined);
-      console.log('here hehe 1');
     } else if (newTasksTitle.trim().length > 15) {
-      setErrorTaskTitle('your task must max 15 symbol');
-      console.log('here hehe 2');
+      setErrorTaskTitle('your task is to long, max 15 symbl');
     } else {
       setErrorTaskTitle('your task is empty');
     }
@@ -57,7 +55,7 @@ export const Todolist: React.FC<TaskPropsType> = ({
         <button onClick={addTasHandler} disabled={!!errorTaskTitle}>
           +
         </button>
-        <div>{errorTaskTitle}</div>
+        <div style={{ color: errorTaskTitle ? 'red' : '' }}>{errorTaskTitle}</div>
       </div>
       {tasks.length ? (
         <ul>
