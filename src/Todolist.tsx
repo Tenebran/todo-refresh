@@ -8,6 +8,7 @@ export type TaskPropsType = {
   removeTask: (id: string) => void;
   addTasks: (title: string) => void;
   onClickFilterValueHandler: (value: FilterValueType) => void;
+  changeTaskStatus: (id: string, event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
 };
 
 export const Todolist: React.FC<TaskPropsType> = ({
@@ -16,6 +17,7 @@ export const Todolist: React.FC<TaskPropsType> = ({
   removeTask,
   addTasks,
   onClickFilterValueHandler,
+  changeTaskStatus,
 }) => {
   const [newTasksTitle, setNewTasksTitle] = useState('');
   const [errorTaskTitle, setErrorTaskTitle] = useState<undefined | string>(undefined);
@@ -26,7 +28,7 @@ export const Todolist: React.FC<TaskPropsType> = ({
       setNewTasksTitle('');
       setErrorTaskTitle(undefined);
     } else if (newTasksTitle.trim().length > 15) {
-      setErrorTaskTitle('your task is to long, max 15 symbl');
+      setErrorTaskTitle('your task is to long´');
     } else {
       setErrorTaskTitle('your task is empty');
     }
@@ -60,7 +62,15 @@ export const Todolist: React.FC<TaskPropsType> = ({
       {tasks.length ? (
         <ul>
           {tasks.map((t) => {
-            return <Task id={t.id} title={t.title} isDone={t.isDone} removeTask={removeTask} />;
+            return (
+              <Task
+                id={t.id}
+                title={t.title}
+                isDone={t.isDone}
+                removeTask={removeTask}
+                changeTaskStatus={changeTaskStatus}
+              />
+            );
           })}
         </ul>
       ) : (

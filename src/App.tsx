@@ -48,6 +48,10 @@ function App() {
     }
   };
 
+  const changeTaskStatus = (id: string, event: React.MouseEvent<HTMLInputElement>) => {
+    setTasks(tasks.map((t) => (t.id === id ? { ...t, isDone: event.currentTarget.checked } : t)));
+  };
+
   const filteredTasksForRender: TaskType[] = getFilteredTasks(tasks, filterValue);
 
   const onClickFilterValueHandler = (value: FilterValueType) => {
@@ -62,6 +66,7 @@ function App() {
         removeTask={removeTask}
         addTasks={addTasks}
         onClickFilterValueHandler={onClickFilterValueHandler}
+        changeTaskStatus={changeTaskStatus}
       />
     </div>
   );
