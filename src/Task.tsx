@@ -19,7 +19,7 @@ export const Task: React.FC<TasksPropsType> = ({
   return (
     <li>
       <input type="checkbox" id={id} checked={isDone} onChange={(e) => changeTaskStatus(id, e)} />
-      <span>{title}</span>
+      <span className={isDone ? 'task' : ''}>{title}</span>
       <button onClick={onClickRemoveTaskHandler}>x</button>
     </li>
   );

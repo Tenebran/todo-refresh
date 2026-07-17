@@ -16,3 +16,8 @@
   padding: 0 20px 20px;
   margin: 30px 0 0;
 }
+
+.task {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
