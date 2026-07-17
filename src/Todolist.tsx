@@ -8,7 +8,8 @@ export type TaskPropsType = {
   removeTask: (id: string) => void;
   addTasks: (title: string) => void;
   onClickFilterValueHandler: (value: FilterValueType) => void;
-  changeTaskStatus: (id: string, event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
+  changeTaskStatus: (id: string, event: React.ChangeEvent<HTMLInputElement, Element>) => void;
+  filterValue: FilterValueType;
 };
 
 export const Todolist: React.FC<TaskPropsType> = ({
@@ -18,6 +19,7 @@ export const Todolist: React.FC<TaskPropsType> = ({
   addTasks,
   onClickFilterValueHandler,
   changeTaskStatus,
+  filterValue,
 }) => {
   const [newTasksTitle, setNewTasksTitle] = useState('');
   const [errorTaskTitle, setErrorTaskTitle] = useState<undefined | string>(undefined);
@@ -77,9 +79,21 @@ export const Todolist: React.FC<TaskPropsType> = ({
         <span>Your tasks list is empty</span>
       )}
       <div>
-        <button onClick={() => onClickFilterValueHandler('all')}>All</button>
-        <button onClick={() => onClickFilterValueHandler('active')}>Active</button>
-        <button onClick={() => onClickFilterValueHandler('completed')}>Completed</button>
+        <button
+          style={{ backgroundColor: filterValue === 'all' ? 'gold' : '' }}
+          onClick={() => onClickFilterValueHandler('all')}>
+          All
+        </button>
+        <button
+          style={{ backgroundColor: filterValue === 'active' ? 'gold' : '' }}
+          onClick={() => onClickFilterValueHandler('active')}>
+          Active
+        </button>
+        <button
+          style={{ backgroundColor: filterValue === 'completed' ? 'gold' : '' }}
+          onClick={() => onClickFilterValueHandler('completed')}>
+          Completed
+        </button>
       </div>
     </div>
   );

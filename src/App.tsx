@@ -48,7 +48,7 @@ function App() {
     }
   };
 
-  const changeTaskStatus = (id: string, event: React.MouseEvent<HTMLInputElement>) => {
+  const changeTaskStatus = (id: string, event: React.ChangeEvent<HTMLInputElement, Element>) => {
     setTasks(tasks.map((t) => (t.id === id ? { ...t, isDone: event.currentTarget.checked } : t)));
   };
 
@@ -67,6 +67,7 @@ function App() {
         addTasks={addTasks}
         onClickFilterValueHandler={onClickFilterValueHandler}
         changeTaskStatus={changeTaskStatus}
+        filterValue={filterValue}
       />
     </div>
   );

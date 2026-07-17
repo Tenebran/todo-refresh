@@ -5,7 +5,7 @@ export type TasksPropsType = {
   isDone: boolean;
   title: string;
   removeTask: (id: string) => void;
-  changeTaskStatus: (id: string, event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
+  changeTaskStatus: (id: string, event: React.ChangeEvent<HTMLInputElement, Element>) => void;
 };
 
 export const Task: React.FC<TasksPropsType> = ({
@@ -18,7 +18,7 @@ export const Task: React.FC<TasksPropsType> = ({
   const onClickRemoveTaskHandler = () => removeTask(id);
   return (
     <li>
-      <input type="checkbox" id={id} checked={isDone} onClick={(e) => changeTaskStatus(id, e)} />
+      <input type="checkbox" id={id} checked={isDone} onChange={(e) => changeTaskStatus(id, e)} />
       <span>{title}</span>
       <button onClick={onClickRemoveTaskHandler}>x</button>
     </li>
