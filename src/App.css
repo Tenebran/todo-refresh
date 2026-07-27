@@ -21,3 +21,18 @@
   text-decoration: line-through;
   opacity: 0.5;
 }
+
+.btn {
+  border: 1px solid white;
+  border-radius: 3px;
+  background-color: white;
+  margin: 0 2px 0 0;
+}
+
+.btn-active {
+  background-color: gold;
+  color: rgb(66, 0, 249);
+  border-radius: 3px;
+  border: 1px solid gold;
+  margin: 0 2px 0 0;
+}

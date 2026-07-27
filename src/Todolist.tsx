@@ -80,17 +80,17 @@ export const Todolist: React.FC<TaskPropsType> = ({
       )}
       <div>
         <button
-          style={{ backgroundColor: filterValue === 'all' ? 'gold' : '' }}
+          className={filterValue === 'all' ? 'btn-active' : 'btn'}
           onClick={() => onClickFilterValueHandler('all')}>
           All
         </button>
         <button
-          style={{ backgroundColor: filterValue === 'active' ? 'gold' : '' }}
+          className={filterValue === 'active' ? 'btn-active' : 'btn'}
           onClick={() => onClickFilterValueHandler('active')}>
           Active
         </button>
         <button
-          style={{ backgroundColor: filterValue === 'completed' ? 'gold' : '' }}
+          className={filterValue === 'completed' ? 'btn-active' : 'btn'}
           onClick={() => onClickFilterValueHandler('completed')}>
           Completed
         </button>
